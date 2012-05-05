@@ -325,6 +325,8 @@ set_shell_label() {
         fi
 
         host_color=${!host_color}
+        at_color=${at_color:-green}
+        at_color=${!at_color}
 
         # we might already have short host name
         host=${host%.$default_domain}
@@ -334,7 +336,7 @@ set_shell_label() {
 
         if [[ -n $id  || -n $host ]] ;   then
                 [[ -n $id  &&  -n $host ]]  &&  at='@'  || at=''
-                color_who_where="${id}${host:+$host_color$at$host}${tty:+ $tty}"
+                color_who_where="${id}${host:+$at_color$at$host_color$host}${tty:+ $tty}"
                 plain_who_where="${id}$at$host"
 
                 # add trailing " "
